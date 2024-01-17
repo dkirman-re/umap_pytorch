@@ -42,7 +42,7 @@ class UMAPDataset(Dataset):
         self.data = torch.Tensor(data)
         
     def __len__(self):
-        return int(self.data.shape[0])
+        return int(self.edges_to_exp.shape[0])
     
     def __getitem__(self, index):
         edges_to_exp = self.data[self.edges_to_exp[index]]
