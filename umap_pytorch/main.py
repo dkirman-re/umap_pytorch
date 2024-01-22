@@ -122,7 +122,7 @@ class TrainerCallback(pl.Callback):
         print(inspect.stack()[0][3], flush=True)
     def on_train_batch_end(self, trainer, pl_module, outputs, batch, batch_idx):
         print(inspect.stack()[0][3], flush=True)
-    def on_train_batch_start(self, trainer, pl_module, batch, batch_idx):
+    def on_train_batch_start(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
     def on_train_end(self, trainer, pl_module):
         print(inspect.stack()[0][3], flush=True)
