@@ -1,4 +1,5 @@
 import pytorch_lightning as pl
+from lightning.pytorch.callbacks import Callback
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
@@ -67,7 +68,84 @@ class Model(pl.LightningModule):
             else:
                 return encoder_loss
             
+""" Trainer Callbacks """
 
+
+class TrainerCallback(Callback):
+    def load_state_dict(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_after_backward(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_before_backward(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_before_optimizer_step(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_before_zero_grad(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_exception(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_fit_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_fit_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_load_checkpoint(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_predict_batch_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_predict_batch_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_predict_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_predict_epoch_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_predict_epoch_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_predict_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_sanity_check_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_sanity_check_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_save_checkpoint(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_test_batch_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_test_batch_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_test_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_test_epoch_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_test_epoch_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_test_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_train_batch_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_train_batch_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_train_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_train_epoch_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_train_epoch_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_train_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_validation_batch_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_validation_batch_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_validation_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_validation_epoch_end(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_validation_epoch_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def on_validation_start(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
+    def setup(self, trainer, pl_module):
+        print(inspect.stack[0][3], flush=True)
 """ Datamodule """
 
 
@@ -109,6 +187,7 @@ class PUMAP():
         num_workers=1,
         num_gpus=1,
         match_nonparametric_umap=False,
+        debug=False
     ):
         self.encoder = encoder
         self.decoder = decoder
@@ -127,7 +206,8 @@ class PUMAP():
         self.match_nonparametric_umap = match_nonparametric_umap
         
     def fit(self, X):
-        trainer = pl.Trainer(accelerator='gpu', devices=1, max_epochs=self.epochs)
+        trainer_callbacks = [TrainerCallback()] if debug else None 
+        trainer = pl.Trainer(accelerator='gpu', devices=1, callbacks=trainer_callbacks, max_epochs=self.epochs)
         encoder = default_encoder(X.shape[1:], self.n_components) if self.encoder is None else self.encoder
         
         if self.decoder is None or isinstance(self.decoder, nn.Module):
