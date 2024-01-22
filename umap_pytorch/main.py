@@ -71,27 +71,27 @@ class Model(pl.LightningModule):
 
 
 class TrainerCallback(pl.Callback):
-    def load_state_dict(self, trainer, pl_module):
+    def load_state_dict(self, state_dict):
         print(inspect.stack[0][3], flush=True)
     def on_after_backward(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
-    def on_before_backward(self, trainer, pl_module):
+    def on_before_backward(self, trainer, pl_module, loss):
         print(inspect.stack[0][3], flush=True)
-    def on_before_optimizer_step(self, trainer, pl_module):
+    def on_before_optimizer_step(self, trainer, pl_module, optimizer):
         print(inspect.stack[0][3], flush=True)
-    def on_before_zero_grad(self, trainer, pl_module):
+    def on_before_zero_grad(self, trainer, pl_module, optimizer):
         print(inspect.stack[0][3], flush=True)
-    def on_exception(self, trainer, pl_module):
+    def on_exception(self, trainer, pl_module, exception):
         print(inspect.stack[0][3], flush=True)
     def on_fit_end(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
     def on_fit_start(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
-    def on_load_checkpoint(self, trainer, pl_module):
+    def on_load_checkpoint(self, trainer, pl_module, checkpoint):
         print(inspect.stack[0][3], flush=True)
-    def on_predict_batch_end(self, trainer, pl_module):
+    def on_predict_batch_end(self, trainer, pl_module, outputs, batch, batch_idx):
         print(inspect.stack[0][3], flush=True)
-    def on_predict_batch_start(self, trainer, pl_module):
+    def on_predict_batch_start(self, trainer, pl_module, batch, batch_idx):
         print(inspect.stack[0][3], flush=True)
     def on_predict_end(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
@@ -105,11 +105,11 @@ class TrainerCallback(pl.Callback):
         print(inspect.stack[0][3], flush=True)
     def on_sanity_check_start(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
-    def on_save_checkpoint(self, trainer, pl_module):
+    def on_save_checkpoint(self, trainer, pl_module, checkpoint):
         print(inspect.stack[0][3], flush=True)
-    def on_test_batch_end(self, trainer, pl_module):
+    def on_test_batch_end(self, trainer, pl_module, outputs, batch, batch_idx):
         print(inspect.stack[0][3], flush=True)
-    def on_test_batch_start(self, trainer, pl_module):
+    def on_test_batch_start(self, trainer, pl_module, batch, batch_idx):
         print(inspect.stack[0][3], flush=True)
     def on_test_end(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
@@ -119,9 +119,9 @@ class TrainerCallback(pl.Callback):
         print(inspect.stack[0][3], flush=True)
     def on_test_start(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
-    def on_train_batch_end(self, trainer, pl_module):
+    def on_train_batch_end(self, trainer, pl_module, outputs, batch, batch_idx):
         print(inspect.stack[0][3], flush=True)
-    def on_train_batch_start(self, trainer, pl_module):
+    def on_train_batch_start(self, trainer, pl_module, batch, batch_idx):
         print(inspect.stack[0][3], flush=True)
     def on_train_end(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
@@ -131,9 +131,9 @@ class TrainerCallback(pl.Callback):
         print(inspect.stack[0][3], flush=True)
     def on_train_start(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
-    def on_validation_batch_end(self, trainer, pl_module):
+    def on_validation_batch_end(self, trainer, pl_module, outputs, batch, batch_idx):
         print(inspect.stack[0][3], flush=True)
-    def on_validation_batch_start(self, trainer, pl_module):
+    def on_validation_batch_start(self, trainer, pl_module, batch, batch_idx):
         print(inspect.stack[0][3], flush=True)
     def on_validation_end(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
@@ -143,7 +143,9 @@ class TrainerCallback(pl.Callback):
         print(inspect.stack[0][3], flush=True)
     def on_validation_start(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
-    def setup(self, trainer, pl_module):
+    def setup(self, trainer, pl_module, stage):
+        print(inspect.stack[0][3], flush=True)
+    def teardown(self, trainer, pl_module, stage):
         print(inspect.stack[0][3], flush=True)
 """ Datamodule """
 
