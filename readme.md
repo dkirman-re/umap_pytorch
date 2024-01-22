@@ -26,6 +26,7 @@ pumap = PUMAP(
         num_workers=1,
         num_gpus=1,
         match_nonparametric_umap=False # Train network to match embeddings from non parametric umap
+        debug=False
 )
 
 data = torch.randn((50000, 512))
