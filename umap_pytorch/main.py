@@ -1,5 +1,4 @@
 import pytorch_lightning as pl
-from lightning.pytorch.callbacks import Callback
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
@@ -71,7 +70,7 @@ class Model(pl.LightningModule):
 """ Trainer Callbacks """
 
 
-class TrainerCallback(Callback):
+class TrainerCallback(pl.Callback):
     def load_state_dict(self, trainer, pl_module):
         print(inspect.stack[0][3], flush=True)
     def on_after_backward(self, trainer, pl_module):
