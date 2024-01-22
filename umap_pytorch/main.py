@@ -11,6 +11,7 @@ from umap_pytorch.model import default_encoder, default_decoder
 
 from umap.umap_ import find_ab_params
 import dill
+import inspect
 from umap import UMAP
 
 """ Model """
