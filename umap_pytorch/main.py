@@ -204,9 +204,10 @@ class PUMAP():
         self.num_workers = num_workers
         self.num_gpus = num_gpus
         self.match_nonparametric_umap = match_nonparametric_umap
+        self.debug = debug
         
     def fit(self, X):
-        trainer_callbacks = [TrainerCallback()] if debug else None 
+        trainer_callbacks = [TrainerCallback()] if self.debug else None 
         trainer = pl.Trainer(accelerator='gpu', devices=1, callbacks=trainer_callbacks, max_epochs=self.epochs)
         encoder = default_encoder(X.shape[1:], self.n_components) if self.encoder is None else self.encoder
         
