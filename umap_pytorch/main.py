@@ -198,7 +198,7 @@ class PUMAP():
             graph = get_umap_graph(X, n_neighbors=self.n_neighbors, metric=self.metric, random_state=self.random_state)
             trainer.fit(
                 model=self.model,
-                datamodule=Datamodule(UMAPDataset(X, graph), self.batch_size, self.num_workers)
+                datamodule=Datamodule(UMAPDataset(X, graph), self.batch_size, self.num_workers, num_subsets=self.epochs)
                 )
         else:
             print("Fitting Non parametric Umap")
