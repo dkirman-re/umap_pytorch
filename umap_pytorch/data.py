@@ -35,10 +35,7 @@ class UMAPDataset(Dataset):
         self.edges_to_exp, self.edges_from_exp = (
         np.repeat(head, epochs_per_sample.astype("int")),
         np.repeat(tail, epochs_per_sample.astype("int")),
-    )
-        shuffle_mask = np.random.permutation(np.arange(len(self.edges_to_exp)))
-        self.edges_to_exp = self.edges_to_exp[shuffle_mask].astype(np.int64)
-        self.edges_from_exp = self.edges_from_exp[shuffle_mask].astype(np.int64)
+        )
         self.data = torch.Tensor(data)
         
     def __len__(self):
