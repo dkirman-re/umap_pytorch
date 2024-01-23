@@ -130,7 +130,7 @@ class Datamodule(pl.LightningDataModule):
         self.num_subsets = num_subsets
 
     def train_dataloader(self):
-        if num_subsets:
+        if self.num_subsets:
             iterables = {f'loader_{i}' : DataLoader(
                 dataset = self.dataset[i * (len(self.dataset)/self.num_subsets) : (i+1) * (len(self.dataset)/self.num_subsets)],
                 batch_size = self.batch_size,
