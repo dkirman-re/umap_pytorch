@@ -121,13 +121,23 @@ class Datamodule(pl.LightningDataModule):
         dataset,
         batch_size,        
         num_workers,
+        num_subsets = None
     ):
         super().__init__()
         self.dataset = dataset
         self.batch_size = batch_size
         self.num_workers = num_workers
+        self.num_subsets = num_subsets
 
-    def train_dataloader(self) -> DataLoader:
+    def train_dataloader(self):
+        if num_subsets:
+            iterables = {f'loader_{i}' : DataLoader(
+                dataset = self.dataset[i * (len(self.dataset)/self.num_subsets) : (i+1) * (len(self.dataset)/self.num_subsets)],
+                batch_size = self.batch_size,
+                num_workers = self.num_workers,
+                shuffle=True)
+                for i in range(self.num_subsets)}
+            return pl.CombinedLoader(iterables, 'max_size')
         return DataLoader(
             dataset=self.dataset,
             batch_size=self.batch_size,
