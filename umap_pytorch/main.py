@@ -72,81 +72,45 @@ class Model(pl.LightningModule):
 
 
 class TrainerCallback(pl.Callback):
-    def load_state_dict(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_after_backward(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_before_backward(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_before_optimizer_step(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_before_zero_grad(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_exception(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_fit_end(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_fit_start(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
     def on_load_checkpoint(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_predict_batch_end(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_predict_batch_start(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_predict_end(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_predict_epoch_end(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_predict_epoch_start(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_predict_start(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_sanity_check_end(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_sanity_check_start(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
     def on_save_checkpoint(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
-    def on_test_batch_end(self, *args, **kwargs):
+
+    def on_fit_start(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
-    def on_test_batch_start(self, *args, **kwargs):
+    def on_train_start(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
-    def on_test_end(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_test_epoch_end(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_test_epoch_start(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_test_start(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_train_batch_end(self, *args, **kwargs):
+    def on_train_epoch_start(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
     def on_train_batch_start(self, *args, **kwargs):
+        print(inspect.stack()[0][3], flush=True)
+    
+    def on_before_zero_grad(self, *args, **kwargs):
+        print(inspect.stack()[0][3], flush=True)
+    def on_before_backward(self, *args, **kwargs):
+        print(inspect.stack()[0][3], flush=True)
+    def on_after_backward(self, *args, **kwargs):
+        print(inspect.stack()[0][3], flush=True)
+    def on_before_optimizer_step(self, *args, **kwargs):
+        print(inspect.stack()[0][3], flush=True)
+    
+    def on_fit_end(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
     def on_train_end(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
     def on_train_epoch_end(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
-    def on_train_epoch_start(self, *args, **kwargs):
+    def on_train_batch_end(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
-    def on_train_start(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_validation_batch_end(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_validation_batch_start(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_validation_end(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_validation_epoch_end(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_validation_epoch_start(self, *args, **kwargs):
-        print(inspect.stack()[0][3], flush=True)
-    def on_validation_start(self, *args, **kwargs):
+    
+    def load_state_dict(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
     def setup(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
     def teardown(self, *args, **kwargs):
+        print(inspect.stack()[0][3], flush=True)
+    def on_exception(self, *args, **kwargs):
         print(inspect.stack()[0][3], flush=True)
 """ Datamodule """
 
