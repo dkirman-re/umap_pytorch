@@ -1,4 +1,5 @@
 import pytorch_lightning as pl
+from pytorch_lightning.utlities import CombinedLoader
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
@@ -137,7 +138,7 @@ class Datamodule(pl.LightningDataModule):
                 num_workers = self.num_workers,
                 shuffle=True)
                 for i in range(self.num_subsets)}
-            return pl.CombinedLoader(iterables, 'max_size')
+            return CombinedLoader(iterables, 'max_size')
         return DataLoader(
             dataset=self.dataset,
             batch_size=self.batch_size,
